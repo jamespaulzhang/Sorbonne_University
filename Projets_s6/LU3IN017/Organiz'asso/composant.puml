@@ -1,0 +1,303 @@
+@startuml
+
+component "AddMessage" as AddMessage {
+    + addMessage
+}
+
+component "AdminFeed" as AdminFeed {
+    + messages
+    + setMessages
+    + addMessage
+    + removeMessage
+}
+
+component "AdminMenu" as AdminMenu {
+    + currentPage
+    + toFeedPage
+    + toFeedAdminPage
+    + showValidation
+    + setShowValidation
+}
+
+component "AdminPanel" as AdminPanel {
+    + selectedSection
+    + setSelectedSection
+}
+
+component "AdminSidebar" as AdminSidebar {
+    + showValidation
+    + setShowValidation
+    + handleAcceptUser
+    + handleRejectUser
+}
+
+component "DeleteMessage" as DeleteMessage {
+    + onDelete
+    + id
+}
+
+component "EditMessage" as EditMessage {
+    + onEdit
+    + id
+}
+
+component "EditReply" as EditReply {
+    + onEdit
+    + id
+}
+
+component "Feed" as Feed {
+    + messages
+    + setMessages
+    + addMessage
+    + removeMessage
+}
+
+component "index" as index {
+    + render
+}
+
+component "Login" as Login {
+    + domModal
+    + modalOpen
+    + modalClose
+    + username
+    + password
+    + showPassword
+    + getUsername
+    + getPassword
+    + togglePasswordVisibility
+    + alert
+    + handleLogin
+    + handleKeyDown
+}
+
+component "Logout" as Logout {
+    + logout
+}
+
+component "MainPage" as MainPage {
+    + currentPage
+    + setCurrentPage
+    + isConnected
+    + setConnected
+    + currentUser
+    + setCurrentUser
+    + getConnected
+    + setLogout
+    + toFeedPage
+    + toFeedAdminPage
+    + toResultPage
+    + toUserPage
+}
+
+component "Message" as Message {
+    + author
+    + replies
+    + replyCount
+    + likeCount
+    + userHasLiked
+    + isEditing
+    + editedContent
+    + editedTime
+    + replyingTo
+    + getAuthor
+    + getReplies
+    + addReply
+    + removeReply
+    + like
+    + editMessage
+    + saveEditedMessage
+    + handleKeyDown
+    + startReplyWithQuote
+    + formatDate
+}
+
+component "MessageList" as MessageList {
+    + messages
+    + removeMessage
+    + currentUser
+    + toUserPage
+}
+
+component "NavigationPanel" as NavigationPanel {
+    + isConnected
+    + toUserPage
+    + logout
+    + login
+}
+
+component "Reply" as Reply {
+    + author
+    + likeCount
+    + userHasLiked
+    + isEditing
+    + editedContent
+    + editedTime
+    + getAuthor
+    + like
+    + editReply
+    + saveEditedReply
+    + handleKeyDown
+    + formatDate
+}
+
+component "ReplyList" as ReplyList {
+    + replies
+    + removeReply
+    + currentUser
+    + toUserPage
+    + onQuote
+}
+
+component "SearchBar" as SearchBar {
+    + search
+    + date_from
+    + date_to
+    + rechercher
+}
+
+component "SearchResults" as SearchResults {
+    + messages
+    + setMessages
+    + removeMessage
+}
+
+component "Signup" as Signup {
+    + firstName
+    + lastName
+    + username
+    + password1
+    + password2
+    + alert
+    + showPassword1
+    + showPassword2
+    + getFirstName
+    + getLastName
+    + getUsername
+    + getPassword1
+    + getPassword2
+    + togglePasswordVisibility1
+    + togglePasswordVisibility2
+    + submissionHandler
+}
+
+component "User" as User {
+    + user
+    + currentUser
+    + messages
+    + isAdmin
+    + setMessages
+    + addMessage
+    + removeMessage
+    + setAdmin
+}
+
+component "UserInfo" as UserInfo {
+    + user
+    + currentUser
+    + setAdmin
+    + isAdmin
+}
+
+component "UserMessageList" as UserMessageList {
+    + messages
+    + removeMessage
+    + currentUser
+    + toUserPage
+}
+
+component "UserProfile" as UserProfile {
+    + user
+    + currentUser
+    + addMessage
+    + isCurrentUser
+    + currentPassword
+    + newPassword
+    + confirmPassword
+    + message
+    + showCurrentPassword
+    + showNewPassword
+    + showConfirmPassword
+    + showDeleteModal
+    + deletePassword
+    + handlePasswordChange
+    + handleDeleteAccount
+}
+
+component "UserValidation" as UserValidation {
+    + users
+    + loading
+    + fetchUsers
+    + handleActionComplete
+}
+
+component "ValidateUser" as ValidateUser {
+    + domModal
+    + modal_open
+    + modal_close
+    + handleAction
+}
+
+component "messagesAPI" as messagesAPI {
+    + getMessagesRequest
+    + addMessageRequest
+    + removeMessageRequest
+}
+
+component "serverConfig" as serverConfig {
+    + serverConfig
+}
+
+AddMessage --> AdminFeed : uses
+AddMessage --> Feed : uses
+AdminFeed --> MessageList : uses
+AdminFeed --> AddMessage : uses
+AdminFeed --> messagesAPI : uses
+AdminMenu --> AdminPanel : uses
+AdminMenu --> AdminSidebar : uses
+AdminPanel --> AdminFeed : uses
+AdminPanel --> UserValidation : uses
+AdminSidebar --> AdminMenu : uses
+AdminSidebar --> UserValidation : uses
+DeleteMessage --> Message : uses
+EditMessage --> Message : uses
+EditReply --> Reply : uses
+Feed --> MessageList : uses
+Feed --> AddMessage : uses
+Feed --> messagesAPI : uses
+index --> MainPage : uses
+Login --> NavigationPanel : uses
+Logout --> NavigationPanel : uses
+MainPage --> NavigationPanel : uses
+MainPage --> Signup : uses
+MainPage --> Feed : uses
+MainPage --> SearchResults : uses
+MainPage --> User : uses
+MainPage --> AdminSidebar : uses
+MainPage --> AdminFeed : uses
+Message --> ReplyList : uses
+Message --> DeleteMessage : uses
+Message --> EditMessage : uses
+Message --> messagesAPI : uses
+MessageList --> Message : uses
+NavigationPanel --> Login : uses
+NavigationPanel --> Logout : uses
+Reply --> EditReply : uses
+ReplyList --> Reply : uses
+SearchBar --> SearchResults : uses
+SearchResults --> MessageList : uses
+SearchResults --> messagesAPI : uses
+Signup --> MainPage : uses
+User --> UserInfo : uses
+User --> UserProfile : uses
+User --> UserMessageList : uses
+User --> messagesAPI : uses
+UserInfo --> User : uses
+UserMessageList --> MessageList : uses
+UserProfile --> AddMessage : uses
+UserValidation --> ValidateUser : uses
+ValidateUser --> UserValidation : uses
+messagesAPI --> serverConfig : uses
+
+@enduml

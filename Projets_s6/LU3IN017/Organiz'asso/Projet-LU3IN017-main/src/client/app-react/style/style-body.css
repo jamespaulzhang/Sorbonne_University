@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    grid-area: header;
+    font-family: var(--font-family);
+    background-color: var(--grey1);
+}
+
+::selection {
+    color: #fff;
+    background: var(--red);
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+body::-webkit-scrollbar-track {
+    background: #fff;
+    box-shadow: 0 0 20px 0 #c3c3c333;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--purple);
+    border-radius: 0;
+}
+
+.box {
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #c3c3c333;
+    padding: 25px;
+}
+
+section {
+    box-shadow: 0 0 20px 4px #c3c3c366;
+    padding: 75px 100px;
+    display: flex;
+    justify-content: space-between;
+    gap: 3%;
+}
+
+aside {
+    width: 40%;
+}
+
+aside > .box:not(:last-of-type) {
+    margin-bottom: 40px;
+}
+
+main {
+    width: 100%;
+}
+
+main > .box:not(:last-of-type) {
+    margin-bottom: 40px;
+}
+
+footer {
+    background-color: var(--red);
+    box-shadow: 0 0 20px 4px #c3c3c366;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: #fff;
+}
+
+a, input[type="submit"], input, textarea, button {
+    transition: 0.3s;
+    text-decoration: none;
+    outline: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+
+h1 {
+    font-size: 28px;
+    margin: 0 0 25px 0;
+    color: #000;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 0 0 25px 0;
+    color: #000;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    color: #000;
+    font-weight: 600;
+}
+
+a {
+    cursor: pointer;
+    color: var(--red);
+}
+
+a:hover {
+    color: var(--purple);
+}
+
+#back-to-index {
+    margin-bottom: 30px;
+}
+
+.alert {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+.alert.success {
+    background-color: var(--success);
+}
+.alert.error {
+    background-color: var(--error);
+}
+
+#validation-user {
+    display: flex;
+    align-items: center;
+}
+#validation-user-btn-accept {
+    background-color: var(--success);
+    border-color: var(--success);
+    margin-right: 15px;
+}
+#validation-user-btn-reject {
+    background-color: var(--error);
+    border-color: var(--error);
+}

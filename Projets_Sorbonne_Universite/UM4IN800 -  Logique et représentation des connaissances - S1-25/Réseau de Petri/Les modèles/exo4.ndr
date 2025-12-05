@@ -1,0 +1,27 @@
+p 415.0 140.0 {besion c} 0 n
+p 230.0 50.0 commande 1 n
+t 230.0 120.0 init 0 w n
+t 415.0 215.0 sculpter 0 w n
+p 415.0 305.0 {c sculptee} 0 n
+t 415.0 375.0 peindre 0 w n
+p 415.0 450.0 {carosserie prete} 0 n
+t 235.0 500.0 assembler 0 w n
+p 235.0 605.0 {voiture prete} 0 n
+t 65.0 295.0 {fabriquer roues} 0 w n
+p 65.0 380.0 {roue prete} 0 n
+p 65.0 210.0 {besion de roues} 0 s
+e assembler {voiture prete} 1 n
+e {roue prete} assembler 4 n
+e {fabriquer roues} {roue prete} 1 n
+e {besion de roues} {fabriquer roues} 1 n
+e {carosserie prete} assembler 1 n
+e peindre {carosserie prete} 1 n
+e {c sculptee} peindre 1 n
+e sculpter {c sculptee} 1 n
+e {besion c} sculpter 1 n
+e init {besion c} 1 n
+e init {besion de roues} 4 n
+e commande init 1 n
+h exo4
+
+

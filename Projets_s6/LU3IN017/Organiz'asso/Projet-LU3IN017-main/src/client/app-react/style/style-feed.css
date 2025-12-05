@@ -1,0 +1,101 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Messages */
+ul.message-list > li {
+    background-color: var(--grey1);
+    padding: 20px;
+}
+ul.message-list > li:not(:last-child) {
+    margin-bottom: 30px;
+}
+ul.message-list > li > p:not(:last-child) {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+.message-info {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/* Réponses */
+ul.reply-list > li {
+    background-color: #fff;
+    padding: 10px;
+}
+ul.reply-list > li:first-child {
+    margin-top: 20px;
+}
+ul.reply-list > li:not(:last-child) {
+    margin-bottom: 20px;
+}
+ul.reply-list > li > p:not(:last-child) {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+form.new-reply {
+    margin-top: 20px;
+}
+
+
+
+/* Like button */
+.message-icons, .reply-icons {
+    margin-top: 10px;
+    display: flex;
+}
+div.message-icon, div.reply-icon {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 2px 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+button.btn-icon, button.btn-icon-reply, button.btn-icon-profil {
+    background: var(--grey1);
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--red);
+    height: unset;
+}
+button.btn-icon:hover, button.btn-icon-reply:hover, button.btn-icon-profil:hover {
+    box-shadow: none !important;
+    border: none !important;
+    color: var(--purple) !important;
+}
+button.btn-icon, button.btn-icon:hover, button.btn-icon-profil, button.btn-icon-profil:hover {
+    background: var(--grey1) !important;
+}
+button.btn-icon-reply, button.btn-icon-reply:hover {
+    background: #fff !important;
+}
+button > svg.message-icon, button > svg.reply-icon {
+    transition: 0.3s !important;
+}
+button > svg.message-icon:hover, button > svg.reply-icon:hover {
+    color: var(--purple) !important;
+}
+svg.message-icon, svg.reply-icon, svg.admin-icon {
+    border: none;
+    padding: 0;
+    margin: 4px 8px 0 0;
+    color: var(--red);
+    height: unset;
+}
+svg.message-icon, svg.admin-icon {
+    background: var(--grey1);
+}
+svg.reply-icon {
+    background: #ffff;
+}
+svg.admin-icon {
+    margin-left: 15px;
+}
+

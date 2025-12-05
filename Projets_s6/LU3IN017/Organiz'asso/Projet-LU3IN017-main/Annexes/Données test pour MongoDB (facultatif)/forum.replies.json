@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "66379d958ae3cf1a4a26bb67"
+  },
+  "content": "Génial, j'ai hâte !",
+  "date": {
+    "$date": "2024-05-05T14:54:13.730Z"
+  },
+  "mid": "66379d0d8ae3cf1a4a26bb64",
+  "uid": "66379d728ae3cf1a4a26bb66",
+  "likes": [
+    "66379fba8ae3cf1a4a26bb6f"
+  ],
+  "rid": "66379d958ae3cf1a4a26bb67"
+},
+{
+  "_id": {
+    "$oid": "6637a0168ae3cf1a4a26bb71"
+  },
+  "content": "Super !",
+  "date": {
+    "$date": "2024-05-05T15:04:54.407Z"
+  },
+  "mid": "66379d0d8ae3cf1a4a26bb64",
+  "uid": "66379fba8ae3cf1a4a26bb6f",
+  "likes": [],
+  "rid": "6637a0168ae3cf1a4a26bb71"
+},
+{
+  "_id": {
+    "$oid": "6637a0be8ae3cf1a4a26bb73"
+  },
+  "content": "Le 16 mai ?",
+  "date": {
+    "$date": "2024-05-05T15:07:42.431Z"
+  },
+  "mid": "6637a0738ae3cf1a4a26bb72",
+  "uid": "66379fba8ae3cf1a4a26bb6f",
+  "likes": [],
+  "rid": "6637a0be8ae3cf1a4a26bb73"
+}]

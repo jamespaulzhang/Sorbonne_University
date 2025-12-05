@@ -1,0 +1,23 @@
+t 270.0 50.0 T_arrivee 1 500 n
+p 510.0 50.0 P_generation 1 n
+t 240.0 160.0 T_rasage w 40 70 n {} ne
+p 240.0 440.0 P_barbier_travaille 0 s
+t 400.0 440.0 T_verifie_salle_vide e 0 w n {} ne
+p 90.0 110.0 P_attente 0 n
+t 90.0 440.0 T_prend_client_suivant s 0 w n {} ne
+p 400.0 165.0 P_barbier_dort 1 n
+e T_arrivee P_attente 1 n
+e T_arrivee P_generation 1 n
+e P_generation T_arrivee 1 n
+e T_prend_client_suivant P_barbier_travaille 1 n
+e P_barbier_travaille T_prend_client_suivant 1 n
+e P_attente T_prend_client_suivant 1 n
+e T_verifie_salle_vide P_barbier_dort 1 n
+e P_attente T_verifie_salle_vide ?-1 n
+e P_barbier_travaille T_verifie_salle_vide 1 n
+e T_rasage P_barbier_travaille 1 n
+e P_attente T_rasage 1 n
+e P_barbier_dort T_rasage 1 n
+h barbier
+
+

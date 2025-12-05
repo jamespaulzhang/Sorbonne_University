@@ -1,0 +1,32 @@
+p 275.0 50.0 montant 0 n
+t 40.0 50.0 insert50c n 0 w n {} ne
+t 55.0 455.0 insert1e s 0 w n {} ne
+p 520.0 50.0 stock_1e 5 n
+p 715.0 50.0 stock_50c 10 n
+t 790.0 285.0 recharge e 0 w n {} ne
+t 630.0 285.0 rendu50c e 0 w n {} ne
+t 465.0 285.0 rendu1e e 0 w n {} ne
+p 235.0 455.0 attente_piece 1 s
+t 395.0 455.0 insert2e s 0 w n {} ne
+p 530.0 450.0 rendu 0 s
+t 275.0 285.0 acheter_cafe w 0 w n {} ne
+e attente_piece insert50c 1 n
+e insert50c montant 1 n
+e attente_piece insert1e 1 n
+e insert1e montant 2 n
+e attente_piece insert2e 1 n
+e insert2e montant 4 n
+e acheter_cafe attente_piece 1 n
+e stock_1e rendu1e 1 n
+e montant rendu1e 2 n
+e rendu1e rendu 1 n
+e stock_50c rendu50c 1 n
+e montant rendu50c 1 n
+e stock_1e rendu50c ?-1 n
+e rendu50c rendu 1 n
+e stock_50c recharge ?-1 n
+e recharge stock_50c 10 n
+e montant acheter_cafe 1 n
+h renduMonnaie
+
+

@@ -1,0 +1,27 @@
+net renduMonnaie
+
+# ????
+pl attente_piece (1)        
+pl montant (0)              
+pl stock_1e (5)            
+pl stock_50c (10)           
+pl en_service (0)          
+
+# ???? - ??
+tr insert50c [0,w[ attente_piece -> montant en_service
+tr insert1e [0,w[ attente_piece -> montant*2 en_service
+tr insert2e [0,w[ attente_piece -> montant*4 en_service
+
+# ?????50??
+tr acheter_cafe [0,w[ montant en_service -> montant*0 attente_piece
+
+# ???? - ??1??
+tr rendu1e_1 [0,w[ montant*2 stock_1e -> montant stock_1e*0
+tr rendu1e_2 [0,w[ montant*2 stock_1e -> montant stock_1e*0
+
+# ???? - 50?
+tr rendu50c_1 [0,w[ montant stock_50c ?-2 montant -> montant*0 stock_50c*0
+tr rendu50c_2 [0,w[ montant stock_50c ?-2 montant -> montant*0 stock_50c*0
+
+# ????
+tr recharge [0,w[ stock_50c ?-1 -> stock_50c*10

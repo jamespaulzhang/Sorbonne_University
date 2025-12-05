@@ -1,0 +1,137 @@
+Résultats pour 500 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 4.482000000000000 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 4.876000000000000 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 1.311000000000000 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 0.170000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 0.045000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 42.692999999999998 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 4.482000000000000 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 4.876000000000000 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 1.311000000000000 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 0.170000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 0.045000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 42.692999999999998 secondes
+
+
+Résultats pour 1000 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 19.484000000000002 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 19.800000000000001 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 5.394000000000000 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 0.680000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 0.130000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 173.848999999999990 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 19.484000000000002 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 19.800000000000001 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 5.394000000000000 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 0.680000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 0.130000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 173.848999999999990 secondes
+
+
+Résultats pour 1500 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 43.837000000000003 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 43.698000000000000 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 12.654999999999999 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 1.693000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 0.271000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 431.918000000000006 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 43.837000000000003 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 43.698000000000000 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 12.654999999999999 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 1.693000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 0.271000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 431.918000000000006 secondes
+
+
+Résultats pour 2000 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 90.311000000000007 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 137.800000000000011 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 29.396000000000001 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 3.651000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 0.516000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 897.147000000000048 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 90.311000000000007 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 137.800000000000011 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 29.396000000000001 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 3.651000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 0.516000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 897.147000000000048 secondes
+
+
+Résultats pour 2500 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 186.342000000000013 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 342.252999999999986 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 69.522000000000006 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 7.846000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 0.984000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 2110.398999999997613 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 186.342000000000013 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 342.252999999999986 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 69.522000000000006 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 7.846000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 0.984000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 2110.398999999997613 secondes
+
+
+Résultats pour 3000 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 307.529999999999973 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 530.096000000000004 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 133.890999999999991 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 14.683999999999999 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 1.725000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 3385.755999999999858 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 307.529999999999973 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 530.096000000000004 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 133.890999999999991 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 14.683999999999999 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 1.725000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 3385.755999999999858 secondes
+
+
+Résultats pour 3500 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 484.483000000000004 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 751.494000000000028 secondes
+Temps moyen pour table de hachage (taille 10) sur 1 itérations: 222.491999999999990 secondes
+Temps moyen pour table de hachage (taille 100) sur 1 itérations: 23.599000000000000 secondes
+Temps moyen pour table de hachage (taille 1000) sur 1 itérations: 2.739000000000000 secondes
+Résultats pour arbre quaternaire :
+Temps moyen pour arbre quaternaire sur 1 itérations: 5022.403000000000247 secondes
+
+Temps totaux pour chaque méthode :
+Temps total pour liste chaînée sur 1 itérations: 484.483000000000004 secondes
+Temps total pour table de hachage (taille 1) sur 1 itérations: 751.494000000000028 secondes
+Temps total pour table de hachage (taille 10) sur 1 itérations: 222.491999999999990 secondes
+Temps total pour table de hachage (taille 100) sur 1 itérations: 23.599000000000000 secondes
+Temps total pour table de hachage (taille 1000) sur 1 itérations: 2.739000000000000 secondes
+Temps total pour arbre quaternaire sur 1 itérations: 5022.403000000000247 secondes
+
+
+Résultats pour 4000 chaînes :
+Temps moyen pour liste chaînée sur 1 itérations: 683.437999999999988 secondes
+Résultats pour table de hachage :
+Temps moyen pour table de hachage (taille 1) sur 1 itérations: 1091.373000000000047 secondes

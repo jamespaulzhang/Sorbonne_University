@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "66379cf18ae3cf1a4a26bb61"
+  },
+  "title": "Nouveau smartphone révolutionnaire !",
+  "content": "Découvrez le dernier modèle de smartphone doté de fonctionnalités innovantes et d'une technologie de pointe. Partagez vos impressions !",
+  "date": {
+    "$date": "2024-05-05T14:51:29.252Z"
+  },
+  "uid": "66379d208ae3cf1a4a26bb65",
+  "admin": false,
+  "likes": [
+    "66379d208ae3cf1a4a26bb65",
+    "66379fba8ae3cf1a4a26bb6f"
+  ],
+  "mid": "66379cf18ae3cf1a4a26bb61"
+},
+{
+  "_id": {
+    "$oid": "66379cfa8ae3cf1a4a26bb62"
+  },
+  "title": "Conférence sur l'IA : inscrivez-vous dès maintenant !",
+  "content": "Ne manquez pas notre conférence sur l'intelligence artificielle, avec des experts du domaine qui partageront leurs insights et les dernières avancées.",
+  "date": {
+    "$date": "2024-05-05T14:51:38.013Z"
+  },
+  "uid": "66379fba8ae3cf1a4a26bb6f",
+  "admin": false,
+  "likes": [
+    "66379d208ae3cf1a4a26bb65"
+  ],
+  "mid": "66379cfa8ae3cf1a4a26bb62"
+},
+{
+  "_id": {
+    "$oid": "66379d028ae3cf1a4a26bb63"
+  },
+  "title": "Discussion sur les voitures électriques",
+  "content": "Échangez sur les avantages des véhicules électriques, leurs technologies embarquées et les défis de leur adoption à grande échelle. Partagez vos expériences !",
+  "date": {
+    "$date": "2024-05-05T14:51:46.352Z"
+  },
+  "uid": "66379d208ae3cf1a4a26bb65",
+  "admin": false,
+  "likes": [
+    "66379fba8ae3cf1a4a26bb6f"
+  ],
+  "mid": "66379d028ae3cf1a4a26bb63"
+},
+{
+  "_id": {
+    "$oid": "66379d0d8ae3cf1a4a26bb64"
+  },
+  "title": "Atelier de codage pour débutants",
+  "content": "Vous voulez apprendre les bases de la programmation ? Rejoignez notre atelier où vous découvrirez les langages les plus utilisés dans l'industrie tech.",
+  "date": {
+    "$date": "2024-05-05T14:51:57.176Z"
+  },
+  "uid": "66379d208ae3cf1a4a26bb65",
+  "admin": false,
+  "likes": [
+    "66379d208ae3cf1a4a26bb65",
+    "66379d728ae3cf1a4a26bb66",
+    "66379fba8ae3cf1a4a26bb6f"
+  ],
+  "mid": "66379d0d8ae3cf1a4a26bb64"
+},
+{
+  "_id": {
+    "$oid": "6637a0738ae3cf1a4a26bb72"
+  },
+  "title": "Date du prochain conseil d'administration ?",
+  "content": "Des propositions ?",
+  "date": {
+    "$date": "2024-05-05T15:06:27.042Z"
+  },
+  "uid": "66379d208ae3cf1a4a26bb65",
+  "admin": true,
+  "likes": [],
+  "mid": "6637a0738ae3cf1a4a26bb72"
+}]

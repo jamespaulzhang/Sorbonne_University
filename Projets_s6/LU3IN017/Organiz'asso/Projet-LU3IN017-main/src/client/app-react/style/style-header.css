@@ -1,0 +1,47 @@
+header {
+    background-color: var(--red);
+    box-shadow: 0 0 20px 4px #c3c3c366;
+    padding: 25px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#logo > a, #logo {
+    font-size: 32px;
+    color: #fff;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+#logo > a:hover {
+    color: var(--yellow);
+}
+
+#nav-login {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#nav-login > button, #nav-login > nav > button {
+    font-size: 18px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family);
+}
+
+#nav-login > button:not(:last-child) {
+    margin-right: 25px;
+}
+
+#nav-login > button:hover, #nav-login > button:focus, #nav-login > nav > button:hover, #nav-login > nav > button:focus {
+    color: var(--yellow);
+}
+
+#nav-login > a:not(:last-child) {
+    margin-right: 15px;
+}

@@ -1,0 +1,12 @@
+:root {
+    --font-family: Montserrat, Helvetica, Arial, sans-serif;
+    --red: #b61032;
+    --purple: #531251;
+    --green: #0fa712;
+    --yellow: #fed9a0;
+    --grey1: #f7f8f8;
+    --grey2: #eef0f1;
+    --success: var(--green);
+    --error: var(--red);
+}
+
