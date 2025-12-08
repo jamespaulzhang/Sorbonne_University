@@ -621,145 +621,230 @@ def run_obstacle_performance_tests():
 
 # ==================== GÉNÉRATION AVEC CONTRAINTES ET GUROBI (e) ====================
 
-def verify_101_constraints(grid, M, N):
+def generate_constrained_grid_heuristic(M, N, P):
     """
-    Vérifie manuellement que la grille respecte les contraintes "101" corrigées
+    Méthode heuristique pour générer une grille avec contraintes lorsque Gurobi n'est pas disponible.
+    
+    Cette méthode utilise une approche aléatoire guidée par les contraintes pour placer les obstacles.
+    
+    Retourne:
+    - Une grille valide si une solution existe (None sinon)
+    
+    Contraintes vérifiées:
+    1. Exactement P obstacles au total
+    2. Au plus max_per_row = floor(2P/M) obstacles par ligne
+    3. Au plus max_per_col = floor(2P/N) obstacles par colonne
+    4. Aucune séquence "101" (obstacle-espace-obstacle) dans aucune ligne ou colonne
     """
+    # =============================================
+    # 1. VÉRIFICATION INITIALE DE FAISABILITÉ
+    # =============================================
+    if P < 0 or P > M * N:
+        print(f"ERREUR: P={P} doit être entre 0 et {M*N}")
+        return None
+    
+    # Cas trivial: P = 0 (grille vide)
+    if P == 0:
+        return [[0 for _ in range(N)] for _ in range(M)]
+    
+    # Calcul des limites selon l'énoncé (division entière)
+    max_per_row = (2 * P) // M
+    max_per_col = (2 * P) // N
+    
+    # =============================================
+    # 2. VÉRIFICATION PRÉALABLE DES CONTRAINTES
+    # =============================================
+    print(f"\nPARAMÈTRES HEURISTIQUES:")
+    print(f"  Taille: {M}x{N}, Obstacles: {P}")
+    print(f"  Max par ligne: {max_per_row} (2P/M = {2*P/M:.2f})")
+    print(f"  Max par colonne: {max_per_col} (2P/N = {2*P/N:.2f})")
+    
+    # Vérification si les contraintes sont trop strictes (avertissement seulement)
+    if P > 0 and (max_per_row == 0 or max_per_col == 0):
+        print("\nATTENTION: Contraintes très strictes!")
+        print(f"  max_per_row={max_per_row}, max_per_col={max_per_col}")
+        print("  Cela peut rendre le problème infaisable.")
+    
+    # =============================================
+    # 3. INITIALISATION DES STRUCTURES DE DONNÉES
+    # =============================================
+    grid = [[0 for _ in range(N)] for _ in range(M)]
+    row_counts = [0] * M  # Nombre d'obstacles par ligne
+    col_counts = [0] * N  # Nombre d'obstacles par colonne
+    
+    obstacles_placed = 0
+    max_attempts = M * N * 20  # Nombre maximum de tentatives
+    attempts = 0
+    
+    # =============================================
+    # 4. PLACEMENT HEURISTIQUE DES OBSTACLES
+    # =============================================
+    print(f"\nDÉBUT DE LA GÉNÉRATION HEURISTIQUE...")
+    start_time = time.time()
+    
+    while obstacles_placed < P and attempts < max_attempts:
+        attempts += 1
+        
+        # Choix aléatoire d'une position
+        i = random.randint(0, M-1)
+        j = random.randint(0, N-1)
+        
+        # Vérifier si la position est disponible
+        if grid[i][j] == 1:
+            continue  # Case déjà occupée
+        
+        # =============================================
+        # 4.1 VÉRIFICATION DES CONTRAINTES DE BASE
+        # =============================================
+        # Vérification des limites par ligne et colonne
+        if row_counts[i] >= max_per_row:
+            continue  # Ligne déjà saturée
+        
+        if col_counts[j] >= max_per_col:
+            continue  # Colonne déjà saturée
+        
+        # =============================================
+        # 4.2 VÉRIFICATION DES CONTRAINTES "101"
+        # =============================================
+        valid_position = True
+        
+        # Vérification horizontale
+        # 1. Éviter de créer un motif 1-0-1 en plaçant un obstacle
+        if j >= 2:
+            # Motif: 1-0-? (où ? serait le nouvel obstacle)
+            if grid[i][j-2] == 1 and grid[i][j-1] == 0:
+                valid_position = False
+        
+        if j <= N-3:
+            # Motif: ?-0-1 (où ? serait le nouvel obstacle)
+            if grid[i][j+1] == 0 and grid[i][j+2] == 1:
+                valid_position = False
+        
+        # 2. Éviter de compléter un motif 1-0-1 existant
+        if j >= 1 and j <= N-2:
+            # Motif: 1-?-1
+            if grid[i][j-1] == 1 and grid[i][j+1] == 1:
+                valid_position = False
+        
+        # Vérification verticale
+        # 1. Éviter de créer un motif 1-0-1 en plaçant un obstacle
+        if i >= 2:
+            # Motif: 1-0-? (où ? serait le nouvel obstacle)
+            if grid[i-2][j] == 1 and grid[i-1][j] == 0:
+                valid_position = False
+        
+        if i <= M-3:
+            # Motif: ?-0-1 (où ? serait le nouvel obstacle)
+            if grid[i+1][j] == 0 and grid[i+2][j] == 1:
+                valid_position = False
+        
+        # 2. Éviter de compléter un motif 1-0-1 existant
+        if i >= 1 and i <= M-2:
+            # Motif: 1-?-1
+            if grid[i-1][j] == 1 and grid[i+1][j] == 1:
+                valid_position = False
+        
+        # =============================================
+        # 4.3 PLACEMENT DE L'OBSTACLE SI VALIDE
+        # =============================================
+        if valid_position:
+            grid[i][j] = 1
+            row_counts[i] += 1
+            col_counts[j] += 1
+            obstacles_placed += 1
+            
+            # Feedback visuel pour les grandes grilles
+            if obstacles_placed % max(1, P // 10) == 0:
+                print(f"  Progression: {obstacles_placed}/{P} obstacles placés")
+    
+    end_time = time.time()
+    print(f"FIN DE LA GÉNÉRATION HEURISTIQUE ({end_time - start_time:.2f}s)")
+    
+    # =============================================
+    # 5. VÉRIFICATION COMPLÈTE DE TOUTES LES CONTRAINTES
+    # =============================================
+    print(f"\nVÉRIFICATION DES CONTRAINTES...")
+    
+    # 5.1 Vérification du nombre total d'obstacles
+    total_obstacles = sum(sum(row) for row in grid)
+    if total_obstacles != P:
+        print(f" ERREUR: Nombre total d'obstacles incorrect")
+        print(f"   Attendu: {P}, Trouvé: {total_obstacles}")
+        return None
+    
+    print(f" Obstacles totaux: {P}/{P}")
+    
+    # 5.2 Vérification des contraintes par ligne
+    row_violations = []
+    for i in range(M):
+        row_count = sum(grid[i])
+        if row_count > max_per_row:
+            row_violations.append((i, row_count, max_per_row))
+    
+    if row_violations:
+        print(f" ERREUR: Contraintes de ligne violées")
+        for i, count, max_allowed in row_violations[:3]:  # Affiche seulement 3 violations
+            print(f"   Ligne {i}: {count} obstacles, max autorisé = {max_allowed}")
+        if len(row_violations) > 3:
+            print(f"   ... et {len(row_violations) - 3} autres violations")
+        return None
+    
+    print(f" Contraintes par ligne: respectées (max {max_per_row})")
+    
+    # 5.3 Vérification des contraintes par colonne
+    col_violations = []
+    for j in range(N):
+        col_count = sum(grid[i][j] for i in range(M))
+        if col_count > max_per_col:
+            col_violations.append((j, col_count, max_per_col))
+    
+    if col_violations:
+        print(f" ERREUR: Contraintes de colonne violées")
+        for j, count, max_allowed in col_violations[:3]:
+            print(f"   Colonne {j}: {count} obstacles, max autorisé = {max_allowed}")
+        if len(col_violations) > 3:
+            print(f"   ... et {len(col_violations) - 3} autres violations")
+        return None
+    
+    print(f" Contraintes par colonne: respectées (max {max_per_col})")
+    
+    # 5.4 Vérification des contraintes "101"
+    violations_101 = []
+    
     # Vérification horizontale
     for i in range(M):
         for j in range(N-2):
-            # Vérifie le motif 1-0-1
             if grid[i][j] == 1 and grid[i][j+1] == 0 and grid[i][j+2] == 1:
-                print(f"Violation horizontale 101 trouvée à ({i},{j})-({i},{j+1})-({i},{j+2})")
-                return False
+                violations_101.append(("horizontal", i, j))
     
     # Vérification verticale
     for j in range(N):
         for i in range(M-2):
-            # Vérifie le motif 1-0-1
             if grid[i][j] == 1 and grid[i+1][j] == 0 and grid[i+2][j] == 1:
-                print(f"Violation verticale 101 trouvée à ({i},{j})-({i+1},{j})-({i+2},{j})")
-                return False
+                violations_101.append(("vertical", i, j))
     
-    return True
-
-def generate_constrained_grid_heuristic(M, N, P):
-    """
-    Méthode heuristique améliorée pour respecter la contrainte 101 corrigée
-    
-    Retourne une grille si possible, sinon None
-    """
-    # Vérification de la faisabilité
-    if P < 0 or P > M * N:
-        print(f"Erreur: P={P} doit être entre 0 et {M*N}")
+    if violations_101:
+        print(f" ERREUR: Contraintes 101 violées")
+        for direction, i, j in violations_101[:3]:
+            if direction == "horizontal":
+                print(f"   Horizontal: ({i},{j})-({i},{j+1})-({i},{j+2}) = 1-0-1")
+            else:
+                print(f"   Vertical: ({i},{j})-({i+1},{j})-({i+2},{j}) = 1-0-1")
+        if len(violations_101) > 3:
+            print(f"   ... et {len(violations_101) - 3} autres violations")
         return None
     
-    # Si P=0, retourner une grille vide
-    if P == 0:
-        return [[0 for _ in range(N)] for _ in range(M)]
+    print(f"Contraintes 101: aucune violation")
     
-    grid = [[0 for _ in range(N)] for _ in range(M)]
-    
-    # Placement heuristique des obstacles avec vérification 101
-    obstacles_placed = 0
-    max_attempts = M * N * 10  # Augmenter les tentatives
-    
-    # Contraintes selon l'énoncé (division entière)
-    max_per_row = (2 * P) // M
-    max_per_col = (2 * P) // N
-    
-    # Si les contraintes sont trop strictes, informer l'utilisateur
-    if P > 0 and (max_per_row == 0 or max_per_col == 0):
-        print("ATTENTION: Contraintes très strictes dans la méthode heuristique")
-        print(f"  max_per_row={max_per_row}, max_per_col={max_per_col}")
-        # On va quand même essayer, mais c'est probablement impossible
-    
-    row_counts = [0] * M
-    col_counts = [0] * N
-    
-    attempts = 0
-    while obstacles_placed < P and attempts < max_attempts:
-        attempts += 1
-        i = random.randint(0, M-1)
-        j = random.randint(0, N-1)
-        
-        # Vérifier les contraintes de base
-        if (grid[i][j] == 0 and 
-            row_counts[i] < max_per_row and 
-            col_counts[j] < max_per_col):
-            
-            # Vérification de la contrainte "101" horizontale
-            valid_horizontal = True
-            
-            # Vérifier si placer un obstacle ici créerait un motif 1-0-1 avec les cases adjacentes
-            # Vérification à gauche
-            if j >= 2:
-                # Vérifier motif 1-0-? où on place 1 à la position ?
-                if grid[i][j-2] == 1 and grid[i][j-1] == 0:
-                    valid_horizontal = False
-            
-            # Vérification à droite
-            if j <= N-3:
-                # Vérifier motif ?-0-1 où on place 1 à la position ?
-                if grid[i][j+1] == 0 and grid[i][j+2] == 1:
-                    valid_horizontal = False
-            
-            # Vérifier si placer un obstacle ici complète un motif 1-0-1 existant
-            if j >= 1 and j <= N-2:
-                # Vérifier motif 1-0-1
-                if grid[i][j-1] == 1 and grid[i][j+1] == 1:
-                    valid_horizontal = False
-            
-            # Vérification de la contrainte "101" verticale
-            valid_vertical = True
-            
-            # Vérifier si placer un obstacle ici créerait un motif 1-0-1 avec les cases adjacentes
-            # Vérification en haut
-            if i >= 2:
-                # Vérifier motif 1-0-? où on place 1 à la position ?
-                if grid[i-2][j] == 1 and grid[i-1][j] == 0:
-                    valid_vertical = False
-            
-            # Vérification en bas
-            if i <= M-3:
-                # Vérifier motif ?-0-1 où on place 1 à la position ?
-                if grid[i+1][j] == 0 and grid[i+2][j] == 1:
-                    valid_vertical = False
-            
-            # Vérifier si placer un obstacle ici complète un motif 1-0-1 existant
-            if i >= 1 and i <= M-2:
-                # Vérifier motif 1-0-1
-                if grid[i-1][j] == 1 and grid[i+1][j] == 1:
-                    valid_vertical = False
-            
-            if valid_horizontal and valid_vertical:
-                grid[i][j] = 1
-                row_counts[i] += 1
-                col_counts[j] += 1
-                obstacles_placed += 1
-    
-    # Si on n'a pas placé tous les obstacles, la grille est invalide
-    if obstacles_placed < P:
-        print(f"Impossible de placer tous les obstacles avec les contraintes. Placés: {obstacles_placed}/{P}")
-        return None
-    
-    # Vérification finale des contraintes
-    if not verify_101_constraints(grid, M, N):
-        print("La grille générée ne respecte pas toutes les contraintes 101.")
-        return None
-    
-    # Vérification des contraintes de ligne et colonne
-    for i in range(M):
-        row_count = sum(grid[i])
-        if row_count > max_per_row:
-            print(f"Erreur dans méthode heuristique: Ligne {i} a {row_count} obstacles, max autorisé={max_per_row}")
-            return None
-    
-    for j in range(N):
-        col_count = sum(grid[i][j] for i in range(M))
-        if col_count > max_per_col:
-            print(f"Erreur dans méthode heuristique: Colonne {j} a {col_count} obstacles, max autorisé={max_per_col}")
-            return None
+    # =============================================
+    # 6. RÉSUMÉ FINAL
+    # =============================================
+    print(f"\n GRILLE HEURISTIQUE VALIDE GÉNÉRÉE")
+    print(f"   Taille: {M}x{N}")
+    print(f"   Obstacles: {P} ({P/(M*N)*100:.1f}% de la grille)")
+    print(f"   Taux de remplissage moyen par ligne: {total_obstacles/M:.1f}/{max_per_row}")
+    print(f"   Taux de remplissage moyen par colonne: {total_obstacles/N:.1f}/{max_per_col}")
+    print(f"   Temps de génération: {end_time - start_time:.2f}s")
     
     return grid
 
@@ -772,20 +857,36 @@ def generate_constrained_grid_gurobi_with_weights(M, N, P):
     - Une grille valide si une solution existe
     - La matrice des poids aléatoires (0-1000) utilisée
     - None si aucune solution n'existe avec les contraintes données
+    
+    Note: Cette fonction tente d'utiliser Gurobi. Si Gurobi n'est pas disponible (non installé ou
+    licence expirée), elle utilise une méthode heuristique comme solution de repli.
     """
     
+    # Vérification initiale: Gurobi est-il installé et importé avec succès?
     if not GUROBI_AVAILABLE:
-        print("Gurobi n'est pas disponible. Utilisation de la méthode heuristique.")
+        print("Gurobi n'est pas installé. Utilisation de la méthode heuristique.")
+        # Utilisation de la méthode heuristique comme solution de repli
         grid = generate_constrained_grid_heuristic(M, N, P)
-        return grid, None  # La méthode heuristique ne génère pas de poids
-    
-    # Vérification de la faisabilité
-    if P < 0 or P > M * N:
-        print(f"Erreur: P={P} doit être entre 0 et {M*N}")
+        # Pour la méthode heuristique, nous générons aussi des poids aléatoires
+        # pour maintenir la cohérence avec l'interface de retour
+        if grid is not None:
+            weights = [[random.randint(0, 1000) for _ in range(N)] for _ in range(M)]
+            return grid, weights
         return None, None
     
+    # Gurobi est installé, nous tentons de l'utiliser
+    # Mais nous devons gérer les erreurs potentielles (licence expirée, etc.)
     try:
-        # Création du modèle
+        # Première étape: tester si Gurobi fonctionne correctement (y compris la licence)
+        # en créant un modèle minimal et en l'optimisant
+        test_model = gp.Model("TestModel")
+        test_model.setParam('OutputFlag', 0)
+        test_model.addVar(vtype=GRB.BINARY, name="test_var")
+        test_model.optimize()
+        
+        # Si aucune exception n'est levée ci-dessus, Gurobi fonctionne correctement
+        
+        # Création du modèle principal pour la génération de grille
         model = gp.Model("GridGeneration")
         
         # Variables de décision: x[i][j] = 1 si la case (i,j) contient un obstacle
@@ -794,36 +895,41 @@ def generate_constrained_grid_gurobi_with_weights(M, N, P):
             for j in range(N):
                 x[i,j] = model.addVar(vtype=GRB.BINARY, name=f"x_{i}_{j}")
         
-        # Génération de poids aléatoires entre 0 et 1000
+        # Génération de poids aléatoires entre 0 et 1000 pour chaque case
+        # Ces poids sont utilisés dans la fonction objectif pour sélectionner
+        # les obstacles ayant les poids les plus bas
         weights = [[0] * N for _ in range(M)]
         for i in range(M):
             for j in range(N):
                 weights[i][j] = random.randint(0, 1000)
         
-        # Fonction objectif: minimiser la somme des poids des cases sélectionnées
+        # Fonction objectif: minimiser la somme des poids des cases sélectionnées comme obstacles
+        # Cela signifie que nous préférons placer des obstacles sur des cases avec des poids faibles
         model.setObjective(
             gp.quicksum(weights[i][j] * x[i,j] for i in range(M) for j in range(N)),
             GRB.MINIMIZE
         )
         
-        # Contrainte: exactement P obstacles
+        # Contrainte principale: exactement P obstacles dans la grille
         model.addConstr(
             gp.quicksum(x[i,j] for i in range(M) for j in range(N)) == P,
             "total_obstacles"
         )
         
-        # Calcul des contraintes selon l'énoncé : max par ligne = floor(2P/M), max par colonne = floor(2P/N)
+        # Calcul des contraintes selon l'énoncé:
+        # - maximum par ligne = floor(2P/M) (division entière)
+        # - maximum par colonne = floor(2P/N) (division entière)
         max_per_row = (2 * P) // M
         max_per_col = (2 * P) // N
         
-        # Contraintes: limite par ligne (2P/M obstacles maximum par ligne)
+        # Contraintes: limite du nombre d'obstacles par ligne (2P/M maximum par ligne)
         for i in range(M):
             model.addConstr(
                 gp.quicksum(x[i,j] for j in range(N)) <= max_per_row,
                 f"row_limit_{i}"
             )
         
-        # Contraintes: limite par colonne (2P/N obstacles maximum par colonne)
+        # Contraintes: limite du nombre d'obstacles par colonne (2P/N maximum par colonne)
         for j in range(N):
             model.addConstr(
                 gp.quicksum(x[i,j] for i in range(M)) <= max_per_col,
@@ -831,12 +937,14 @@ def generate_constrained_grid_gurobi_with_weights(M, N, P):
             )
         
         # Contraintes pour éviter la séquence "101" (obstacle-espace-obstacle)
+        # Ces contraintes empêchent d'avoir deux obstacles séparés par exactement une case vide
         # Horizontalement: pour chaque ligne i et chaque colonne j (sauf les deux dernières colonnes)
         for i in range(M):
             for j in range(N-2):
-                # Contrainte correcte: x[i,j] + x[i,j+2] ≤ 1 + x[i,j+1]
-                # Si x[i,j+1] = 0, alors x[i,j] + x[i,j+2] ≤ 1 (interdit 101)
-                # Si x[i,j+1] = 1, alors x[i,j] + x[i,j+2] ≤ 2 (pas de restriction)
+                # Contrainte: x[i,j] + x[i,j+2] ≤ 1 + x[i,j+1]
+                # Si x[i,j+1] = 0 (case vide au milieu), alors x[i,j] + x[i,j+2] ≤ 1
+                # (interdit d'avoir deux obstacles avec une case vide entre eux)
+                # Si x[i,j+1] = 1 (obstacle au milieu), alors la contrainte est relâchée
                 model.addConstr(
                     x[i,j] + x[i,j+2] <= 1 + x[i,j+1],
                     f"no_101_horizontal_{i}_{j}"
@@ -845,66 +953,121 @@ def generate_constrained_grid_gurobi_with_weights(M, N, P):
         # Verticalement: pour chaque colonne j et chaque ligne i (sauf les deux dernières lignes)
         for j in range(N):
             for i in range(M-2):
-                # Contrainte correcte: x[i,j] + x[i+2,j] ≤ 1 + x[i+1,j]
+                # Même logique que pour les contraintes horizontales
                 model.addConstr(
                     x[i,j] + x[i+2,j] <= 1 + x[i+1,j],
                     f"no_101_vertical_{i}_{j}"
                 )
         
-        # Résolution
-        model.setParam('OutputFlag', 0)  # Désactive la sortie détaillée
+        # Configuration du solveur: désactiver la sortie détaillée pour un affichage plus propre
+        model.setParam('OutputFlag', 0)
+        # Lancement de la résolution du problème d'optimisation
         model.optimize()
         
-        # Codes de statut Gurobi
+        # Analyse du statut de la solution retournée par Gurobi
         if model.status == GRB.OPTIMAL:
-            # Construction de la grille
+            # Une solution optimale a été trouvée
+            # Construction de la grille à partir des valeurs des variables
             grid = [[0 for _ in range(N)] for _ in range(M)]
             for i in range(M):
                 for j in range(N):
-                    if x[i,j].x > 0.5:  # Si la variable vaut 1 (avec tolérance)
+                    # Si la valeur de la variable est > 0.5, on considère qu'il y a un obstacle
+                    if x[i,j].x > 0.5:
                         grid[i][j] = 1
             
-            # Vérification manuelle des contraintes 101
-            if not verify_101_constraints(grid, M, N):
-                print("Attention: La solution ne respecte pas toutes les contraintes 101.")
-                # On ne retourne pas une grille invalide
+            # ============================================================
+            # VÉRIFICATION COMPLÈTE DE TOUTES LES CONTRAINTES
+            # ============================================================
+            
+            # 1. Vérification du nombre total d'obstacles
+            total_obstacles = sum(sum(row) for row in grid)
+            if total_obstacles != P:
+                print(f"ERREUR: Nombre total d'obstacles incorrect.")
+                print(f"  Attendu: {P}, Trouvé: {total_obstacles}")
                 return None, None
             
-            # Vérification supplémentaire des contraintes de ligne et colonne
+            # 2. Vérification des contraintes par ligne
             for i in range(M):
                 row_count = sum(grid[i])
                 if row_count > max_per_row:
-                    print(f"Erreur: Ligne {i} a {row_count} obstacles, mais max autorisé = {max_per_row}")
+                    print(f"ERREUR: Contrainte de ligne violée.")
+                    print(f"  Ligne {i}: {row_count} obstacles, max autorisé = {max_per_row}")
                     return None, None
             
+            # 3. Vérification des contraintes par colonne
             for j in range(N):
                 col_count = sum(grid[i][j] for i in range(M))
                 if col_count > max_per_col:
-                    print(f"Erreur: Colonne {j} a {col_count} obstacles, mais max autorisé = {max_per_col}")
+                    print(f"ERREUR: Contrainte de colonne violée.")
+                    print(f"  Colonne {j}: {col_count} obstacles, max autorisé = {max_per_col}")
                     return None, None
+            
+            # 4. Vérification des contraintes "101" (obstacle-espace-obstacle)
+            # Vérification horizontale
+            for i in range(M):
+                for j in range(N-2):
+                    if grid[i][j] == 1 and grid[i][j+1] == 0 and grid[i][j+2] == 1:
+                        print(f"ERREUR: Contrainte 101 horizontale violée.")
+                        print(f"  Position: ({i},{j})-({i},{j+1})-({i},{j+2})")
+                        print(f"  Valeurs: 1-0-1 (interdit)")
+                        return None, None
+            
+            # Vérification verticale
+            for j in range(N):
+                for i in range(M-2):
+                    if grid[i][j] == 1 and grid[i+1][j] == 0 and grid[i+2][j] == 1:
+                        print(f"ERREUR: Contrainte 101 verticale violée.")
+                        print(f"  Position: ({i},{j})-({i+1},{j})-({i+2},{j})")
+                        print(f"  Valeurs: 1-0-1 (interdit)")
+                        return None, None
+            
+            # Si toutes les vérifications passent, la grille est valide
+            print(f"VÉRIFICATION: Toutes les contraintes sont respectées")
+            print(f"  - Obstacles totaux: {P}/{P}")
+            print(f"  - Max par ligne: {max_per_row} (respecté)")
+            print(f"  - Max par colonne: {max_per_col} (respecté)")
+            print(f"  - Contraintes 101: aucune violation")
             
             return grid, weights
         
         elif model.status == GRB.INFEASIBLE:
+            # Le problème n'a pas de solution réalisable avec les contraintes données
             print("Le problème est infaisable avec les contraintes données.")
             print(f"  M={M}, N={N}, P={P}")
-            print(f"  Max par ligne: {max_per_row}, Max par colonne: {max_per_col}")
+            print(f"  Max par ligne: {max_per_row} (2P/M = {2*P/M:.2f})")
+            print(f"  Max par colonne: {max_per_col} (2P/N = {2*P/N:.2f})")
             return None, None
         
         else:
+            # Autre statut (par exemple, temps limite dépassé, interruption utilisateur, etc.)
             print(f"Gurobi n'a pas trouvé de solution optimale. Statut: {model.status}")
             return None, None
             
-    except gp.GurobiError as e:
-        print(f"Erreur Gurobi: {e}")
+    except (gp.GurobiError, AttributeError, NameError) as e:
+        # Capture des erreurs spécifiques à Gurobi, y compris les problèmes de licence
+        # AttributeError et NameError peuvent survenir si l'importation a échoué partiellement
+        print(f"Erreur Gurobi (peut-être une licence expirée ou non configurée): {e}")
+        print("Utilisation de la méthode heuristique à la place.")
+        
+        # Solution de repli: utiliser la méthode heuristique
+        grid = generate_constrained_grid_heuristic(M, N, P)
+        if grid is not None:
+            # Génération de poids aléatoires pour la méthode heuristique également
+            weights = [[random.randint(0, 1000) for _ in range(N)] for _ in range(M)]
+            return grid, weights
         return None, None
-
-def generate_constrained_grid_gurobi(M, N, P):
-    """
-    Version originale qui retourne seulement la grille (pour compatibilité)
-    """
-    grid, _ = generate_constrained_grid_gurobi_with_weights(M, N, P)
-    return grid
+    
+    except Exception as e:
+        # Capture de toute autre exception inattendue
+        print(f"Erreur inattendue avec Gurobi: {e}")
+        print("Utilisation de la méthode heuristique à la place.")
+        
+        # Solution de repli: utiliser la méthode heuristique
+        grid = generate_constrained_grid_heuristic(M, N, P)
+        if grid is not None:
+            weights = [[random.randint(0, 1000) for _ in range(N)] for _ in range(M)]
+            return grid, weights
+        return None, None
 
 def display_weights(weights, M, N, grid):
     """
@@ -1470,9 +1633,9 @@ def interactive_constrained_generation():
             else:
                 times = [res['time_result'] for _, res in valid_results]
                 if all(t == times[0] for t in times):
-                    f.write("✓ Tous les algorithmes donnent le même temps de solution (cohérent).\n")
+                    f.write("Tous les algorithmes donnent le même temps de solution (cohérent).\n")
                 else:
-                    f.write("✗ Les algorithmes donnent des temps de solution différents:\n")
+                    f.write("Les algorithmes donnent des temps de solution différents:\n")
                     for algo, res in valid_results:
                         f.write(f"  - {algo}: {res['time_result']} secondes\n")
         
@@ -1488,7 +1651,7 @@ def interactive_constrained_generation():
         if save == 'o':
             # Vérifier si le fichier existe déjà
             if os.path.exists(full_path):
-                overwrite = input(f"⚠️  Le fichier '{default_filename}' existe déjà. Voulez-vous l'écraser? (o/n): ").lower()
+                overwrite = input(f"  Le fichier '{default_filename}' existe déjà. Voulez-vous l'écraser? (o/n): ").lower()
                 if overwrite != 'o':
                     print("Sauvegarde annulée.")
                     return
