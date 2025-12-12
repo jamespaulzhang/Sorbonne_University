@@ -1,0 +1,127 @@
+Zhang Yuxiang & Lecomte Antoine
+
+Ex 1 :
+
+Partie 1 :
+
+Q1 : Le programme est censé remplir un tableau de 10 cases par une boucle décroissante. Le programme compile mais s'exécute avec une erreur.
+
+Q2 : i vaut 4294967295 après l'itération dans laquelle i valait 0. i devrait valoir 0 pour sortir de la boucle. On essaie d'accéder à la dernière case du tableau. L'erreur de segmentation vient du fait que i est "unsigned" donc il ne peut pas être négatif, donc ne peut pas valoir -1.
+
+Q3 : Il suffit d'enlever le mot clé "unsigned" dans la déclaration du type de i.
+
+
+Partie 2 :
+
+Q4 : Le programme est censé créer une adresse et la renvoyer. Le programme compile mais s'exécute avec une erreur.
+
+Q5 : Il y a une "Segmentation fault" et il s'affiche "No symbol "new" in current context.", car l'utilisation de strcpy ne fait pas d'allocation dynamique. 2 façons de corriger la ligne 15 : utiliser un malloc juste avant la ligne 15 "new->rue = malloc (sizeof(char));" ou remplacer la ligne 15 par "new->rue = strdup(r);" qui se charge de l'allocation dynamique.
+
+
+Partie 3 :
+
+Q6 : Le programme crée un tableau de 100 cases maximum, il ajoute 5 éléments à l'intérieur, affiche le tableau résultant et libère la mémoire allouée précédemment. Le programme compile et s'exécute sans erreur.
+
+Q7 : Il y a une fuite mémoire dans le programme. 
+
+Q8 : 400 bytes pour 4 octets par entier * 100 cases mémoire du tableau.
+
+Q9 : Ajouter l'instruction "free(t->tab);" avant "free(t)".
+
+
+Ex 2 :
+
+Partie 1 :
+
+Q1 : Il est préférable d'utiliser la 2eme fonction, car dans la 1ere on crée une variable qui stocke l'espace mémoire dont nous avons besoin, alors que dans la 2eme, comme on fait un passage par référence, cela permet de mieux gérer des tableaux de grande taille et de pouvoir modifier le tableau à l'endroit désiré facilement.
+
+#include<stdio.h>
+#include<time.h>
+
+int* alloue_tableau_1(int n){
+    int* tab = (int*)malloc(sizeof(int)*n);
+    return tab;
+}
+
+void alloue_tableau_2(int **T,int n){
+    *T = (int*)malloc(n*sizeof(n));
+}
+
+void desalloue_tableau(int *tab){
+    free(tab);
+}
+
+void remplirTableau(int *tab, int n, int V) {
+    srand(time(NULL));
+
+    for (int i = 0; i < n; i++) {
+        tab[i] = rand() % V;
+    }
+}
+
+void afficher_tableau(int* tab,int taille){
+    for(int i = 0;i < taille ; i++){
+        printf("%d\n",tab[i]);
+    }
+}
+
+Q2 : 
+
+#include <stdio.h>
+
+int somme_carres_differences(int tableau[], int n) {
+    int somme = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int difference = tableau[i] - tableau[j];
+            somme += difference * difference;
+        }
+    }
+    return somme;
+}
+
+int somme_carres_differences_2(int tableau[], int n) {
+	int res = 0, s1 = 0, s2 = 0;
+	for (int i = 0; i < n; i++) {
+		s1 += (tableau[i])*(tableau[i]);
+		s2 += tableau[i];
+	}
+	s2 *= s2;
+	res = 2*n*s1-2*s2;
+	return res;
+}
+
+int main() {
+    // Exemple d'utilisation
+    int tableau[] = {1, 2, 3, 4, 5};
+    int taille = 5;
+
+    int resultat = somme_carres_differences(tableau, taille);
+    int resultat2 = somme_carres_differences_2(tableau, taille);
+
+    printf("La somme des carrés des différences est : %d\n", resultat);
+	printf("La somme des carrés des différences est : %d\n", resultat2);
+
+    return 0;
+}
+
+Q3 :
+
+int main() {
+	int tableau[] = {1, 2, 3, 4, 5};
+    int taille = 5;
+    clock_t start1, end1, start2, end2; // Measure time for somme_carres_differences 
+    start1 = clock(); 
+    int resultat = somme_carres_differences(tableau, taille); 
+    end1 = clock(); // Measure time for somme_carres_differences_2 
+    start2 = clock(); 
+    int resultat2 = somme_carres_differences_2(tableau, taille); 
+    end2 = clock(); // Calculate execution times 
+    double cpu_time_used1 = ((double) (end1 - start1)) / CLOCKS_PER_SEC; 
+    double cpu_time_used2 = ((double) (end2 - start2)) / CLOCKS_PER_SEC;
+    printf("La somme des carrés des différences est : %d\n", resultat); 
+    printf("Temps d'exécution pour somme_carres_differences : %f seconds\n", cpu_time_used1);
+    printf("La somme des carrés des différences est : %d\n", resultat2);
+    printf("Temps d'exécution pour somme_carres_differences_2 : %f seconds\n", cpu_time_used2); 
+    return 0;
+
