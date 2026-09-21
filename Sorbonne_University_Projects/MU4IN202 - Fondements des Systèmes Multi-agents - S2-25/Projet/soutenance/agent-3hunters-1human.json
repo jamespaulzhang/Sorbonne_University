@@ -1,0 +1,58 @@
+[
+{ 
+  "agentType":"agentExplo",
+  "agentName": "Hunt1",
+  "agentClass":"dummies.explo.ExploreSoloAgent",
+  "agentInitialContainer":"container2",
+  "communicationRange": 2,
+  "initialLocation": "h16",
+  "backPackCapacityGold": -1,
+  "backPackCapacityDiamond":-1, 
+  "detectionRadius": 0,
+  "strengthExpertise": 1,
+  "lockPickingExpertise":1,
+  "userParameters": ["param1"]
+  },
+{ 
+  "agentType":"agentExplo",
+  "agentName": "Hunt2",
+  "agentClass":"dummies.explo.ExploreSoloAgent",
+  "agentInitialContainer":"container2",
+  "communicationRange": 2,
+  "initialLocation": "h22",
+  "backPackCapacityGold": -1,
+  "backPackCapacityDiamond":-1, 
+  "detectionRadius": 0,
+  "strengthExpertise": 1,
+  "lockPickingExpertise":1,
+  "userParameters": ["param2","param3"]
+  },
+{ 
+  "agentType":"agentExplo",
+  "agentName": "Hunt3",
+  "agentClass":"dummies.explo.ExploreSoloAgent",
+  "agentInitialContainer":"container2",
+  "communicationRange": 2,
+  "initialLocation": "h14",
+  "backPackCapacityGold": -1,
+  "backPackCapacityDiamond":-1, 
+  "detectionRadius": 0,
+  "strengthExpertise": 1,
+  "lockPickingExpertise":1,
+  "userParameters": ["param2","param3"]
+  },
+  { 
+  "agentType":"HumanControlled",
+  "agentName": "ImHere",
+  "agentClass":"dummies.ControlledAgent",
+  "agentInitialContainer":"container2",
+  "communicationRange": 3,
+  "initialLocation": "h1",
+  "backPackCapacityGold": -1,
+  "backPackCapacityDiamond":-1, 
+  "detectionRadius": 1,
+  "strengthExpertise": 1,
+  "lockPickingExpertise":1,
+   "userParameters": ["param"]
+  }
+]

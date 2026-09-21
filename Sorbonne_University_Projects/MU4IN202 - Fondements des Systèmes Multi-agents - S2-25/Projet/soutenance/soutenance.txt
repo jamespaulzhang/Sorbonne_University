@@ -1,0 +1,26 @@
+Soutenances
+
+
+Ci-dessous les deux configurations utilisés pour la soutenance. Il vous suffit de faire un pull sur le dépot Git ou de les télécharger. 2 cartes : 
+
+**La première** : `agent-3hunters-1human et map2026-topologyExam1` Vous avez 3 agents dessus, face à 1 agent controllé par l'humain : touches "N" (ext) et "O"(k). _Vos agents ne doivent pas se déplacer avec un tick inférieur à 800ms_ 
+Avec cette Map j'attendrai que vos agents est fini d'explorer ce qui est explorable avant de déplacer le Golem controlé. Nous verrons ensuite si vos agents poussent le Golem dans la bonne direction si on leur laisse le temps.
+ **La seconde** :  `agent-7hunters-3golems et map2026-topologyExam2`Elle est plus grande. Vous avez 7 agents, face à 3 golems "betes" qui se déplacent en autonomie mais vos agents ont des rayons de com hétérogènes et les odeurs peuvent parfois se recouvrir. Chaque Golem a un rayon d'odeur différent, certains sont donc plus facile a détécter mais plus durs à localiser précisément.
+Dans tous les cas il vous faut ensuite :  
+
+Modifier les fichiers json pour appeler le code de vos agents sur les différents hunters
+Récupérer la mise à jour du code du randomWalk utilisé par le dummieMovingAgent (automatique avec le pull), soit :
+  - modifier la fréquence d'execution à 400ms (ligne 31 du `RandomWalkBehaviour.java`)
+  - commenter la pause qui engendre par défaut un déplacement pas à pas (lignes 45 a 50 du même fichier.)
+```java
+//            try {
+//                System.out.println("Press enter in the console to allow the agent "+this.myAgent.getLocalName() +" to execute its next move");
+//                System.in.read();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+```
+
+Bonne chasse.
+
+Rappel : Vous pouvez modifier votre code mais il faudra indiquer lors de la soutenance ce qui aura été changé.
