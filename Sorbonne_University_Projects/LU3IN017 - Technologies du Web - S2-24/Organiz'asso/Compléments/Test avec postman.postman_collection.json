@@ -1,0 +1,656 @@
+{
+	"info": {
+		"_postman_id": "95ffa17e-0787-4c5b-85ea-2534414c5f1a",
+		"name": "Test avec postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41376111"
+	},
+	"item": [
+		{
+			"name": "Créer un nouvel utilisateur",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"uname\": \"johndoe\",\n    \"password\": \"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer tous les utilisateurs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer un utilisateur par ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/user/682f28f893d249702e2adcce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"682f28f893d249702e2adcce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connexion d'un utilisateur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uname\": \"Laviestbelle\",\n    \"password\": \"NewPassword123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/authentification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"authentification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer les informations de l'utilisateur connecté",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer les demandes d'inscription",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/demand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"demand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approuver une demande d'inscription",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/demand/683079f27d5cf4f86acbfc41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"demand",
+						"683079f27d5cf4f86acbfc41"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modifier le statut administrateur d'un utilisateur",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"683079f27d5cf4f86acbfc41\",\n    \"status\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Créer un nouveau message",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Sample Title\",\n    \"content\": \"Sample Content\",\n    \"uid\": \"683079f27d5cf4f86acbfc41\",\n    \"admin\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer les messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/message/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"message",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer un message par ID du msg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/message/68307d577d5cf4f86acbfc42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"message",
+						"68307d577d5cf4f86acbfc42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mettre à jour le contenu d'un message",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Updated Content\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/message/68307d577d5cf4f86acbfc42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"message",
+						"68307d577d5cf4f86acbfc42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Créer une nouvelle réponse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Sample Reply\",\n    \"mid\": \"68307d577d5cf4f86acbfc42\",\n    \"uid\": \"683079f27d5cf4f86acbfc41\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer les réponses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Récupérer une réponse par ID de la réponse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/reply/68307edb7d5cf4f86acbfc43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reply",
+						"68307edb7d5cf4f86acbfc43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mettre à jour le contenu d'une réponse",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Updated Reply Content\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/reply/68307edb7d5cf4f86acbfc43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reply",
+						"68307edb7d5cf4f86acbfc43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mettre à jour les likes d'un message",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mid\": \"68307d577d5cf4f86acbfc42\",\n    \"uid\": \"683079f27d5cf4f86acbfc41\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/likes/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"likes",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vérifier si un utilisateur a liké un message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/likes/message?mid=68307d577d5cf4f86acbfc42&uid=683079f27d5cf4f86acbfc41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"likes",
+						"message"
+					],
+					"query": [
+						{
+							"key": "mid",
+							"value": "68307d577d5cf4f86acbfc42"
+						},
+						{
+							"key": "uid",
+							"value": "683079f27d5cf4f86acbfc41"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mettre à jour les likes d'une réponse",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rid\": \"68307edb7d5cf4f86acbfc43\",\n    \"uid\": \"683079f27d5cf4f86acbfc41\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/likes/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"likes",
+						"reply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vérifier si un utilisateur a liké une réponse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/likes/reply?rid=68307edb7d5cf4f86acbfc43&uid=683079f27d5cf4f86acbfc41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"likes",
+						"reply"
+					],
+					"query": [
+						{
+							"key": "rid",
+							"value": "68307edb7d5cf4f86acbfc43"
+						},
+						{
+							"key": "uid",
+							"value": "683079f27d5cf4f86acbfc41"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Changement du mdp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"currentPassword\" : \"NewPassword123\",\n    \"newPassword\" : \"NewPassword12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/user/change-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer une demande d'inscription",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/demand/683079f27d5cf4f86acbfc41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"demand",
+						"683079f27d5cf4f86acbfc41"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer une réponse par l'ID de la réponse",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/reply/68307edb7d5cf4f86acbfc43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reply",
+						"68307edb7d5cf4f86acbfc43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un message par l'ID du message",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/message/68307d577d5cf4f86acbfc42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"message",
+						"68307d577d5cf4f86acbfc42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un utilisateur par son ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/user/683079f27d5cf4f86acbfc41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"683079f27d5cf4f86acbfc41"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Déconnexion d'un utilisateur",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/authentification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"authentification"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

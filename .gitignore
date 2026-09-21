@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+target/
+*.log
+logs/
+**/saved_models/
+**/cache/
+**/kaggle/input/

@@ -1,0 +1,152 @@
+Obstacles | Instance | Algorithme | Temps (s) | Solution | Commandes
+----------|----------|------------|-----------|----------|----------
+       10 |        1 | BFS        | 0.037811 | 10       | G G a1 a3 a3 a3 D a1 a3 a3
+       10 |        1 | Dijkstra   | 0.039523 | 10       | G G a3 a3 a3 a1 D a1 a3 a3
+       10 |        1 | Bellman    | 0.343619 | 10       | D D a3 a3 a3 a1 D a1 a3 a3
+       10 |        2 | BFS        | 0.022157 | 10       | a2 G a3 a3 a3 a3 a3 a3 G a3
+       10 |        2 | Dijkstra   | 0.023942 | 10       | a2 G a3 a3 a3 a3 a3 a3 G a3
+       10 |        2 | Bellman    | 0.293342 | 10       | a2 G a3 a3 a3 a3 a3 a3 G a3
+       10 |        3 | BFS        | 0.029339 | 11       | G G a2 G a3 a3 D a3 a3 a3 a3
+       10 |        3 | Dijkstra   | 0.034816 | 11       | D D a2 G a3 a3 D a3 a3 a3 a3
+       10 |        3 | Bellman    | 0.334843 | 11       | D D a2 G a3 a3 D a3 a3 a3 a3
+       10 |        4 | BFS        | 0.035994 | 11       | a1 D a1 a3 a3 a3 a3 a3 a3 G a1
+       10 |        4 | Dijkstra   | 0.036295 | 11       | a1 D a3 a3 a3 a3 a3 a3 a1 G a1
+       10 |        4 | Bellman    | 0.301780 | 11       | a1 D a3 a3 a3 a3 a3 a3 a1 G a1
+       10 |        5 | BFS        | 0.017832 | 8        | a2 D a3 a3 D a3 a3 a3
+       10 |        5 | Dijkstra   | 0.017811 | 8        | a2 D a3 a3 D a3 a3 a3
+       10 |        5 | Bellman    | 0.228073 | 8        | a2 D a3 a3 D a3 a3 a3
+       10 |        6 | BFS        | 0.026246 | 8        | a2 D a2 a3 a3 a3 D a1
+       10 |        6 | Dijkstra   | 0.020253 | 8        | a3 D a3 a3 a3 a2 D a2
+       10 |        6 | Bellman    | 0.364971 | 8        | a3 D a3 a3 a3 a2 D a2
+       10 |        7 | BFS        | 0.000419 | 2        | G a2
+       10 |        7 | Dijkstra   | 0.001263 | 2        | G a2
+       10 |        7 | Bellman    | 0.384954 | 2        | G a2
+       10 |        8 | BFS        | 0.053611 | 16       | D a2 a3 a3 a3 a3 a3 a3 D a1 a3 a3 a3 a3 a3 a3
+       10 |        8 | Dijkstra   | 0.047906 | 16       | D a2 a3 a3 a3 a3 a3 a3 D a1 a3 a3 a3 a3 a3 a3
+       10 |        8 | Bellman    | 0.117660 | 16       | D a2 a3 a3 a3 a3 a3 a3 D a1 a3 a3 a3 a3 a3 a3
+       10 |        9 | BFS        | 0.017036 | 6        | D a1 a3 a3 D a1
+       10 |        9 | Dijkstra   | 0.019049 | 6        | D a3 a3 a1 D a1
+       10 |        9 | Bellman    | 0.310511 | 6        | D a3 a3 a1 D a1
+       10 |       10 | BFS        | 0.039296 | 12       | G a2 D a1 a3 a3 a3 G a3 a3 a3 a3
+       10 |       10 | Dijkstra   | 0.031819 | 12       | G a2 D a1 a3 a3 a3 G a3 a3 a3 a3
+       10 |       10 | Bellman    | 0.251763 | 12       | G a2 D a1 a3 a3 a3 G a3 a3 a3 a3
+       20 |       11 | BFS        | 0.010609 | 6        | G a2 a3 a3 G a3
+       20 |       11 | Dijkstra   | 0.010057 | 6        | G a2 a3 a3 G a3
+       20 |       11 | Bellman    | 0.317041 | 6        | G a2 a3 a3 G a3
+       20 |       12 | BFS        | 0.021757 | 8        | G G a2 D a1 a3 a3 a3
+       20 |       12 | Dijkstra   | 0.025344 | 8        | G a3 a3 G a2 D a3 a1
+       20 |       12 | Bellman    | 0.403078 | 8        | D D a2 D a3 a3 a3 a1
+       20 |       13 | BFS        | 0.008158 | 6        | G a1 G a2 a3 a3
+       20 |       13 | Dijkstra   | 0.009179 | 6        | G a1 G a3 a3 a2
+       20 |       13 | Bellman    | 0.250656 | 6        | G a1 G a3 a3 a2
+       20 |       14 | BFS        | 0.000118 | 2        | G a1
+       20 |       14 | Dijkstra   | 0.000440 | 2        | G a1
+       20 |       14 | Bellman    | 0.302327 | 2        | G a1
+       20 |       15 | BFS        | 0.003637 | 9        | D a2 G a1 a3 a3 a3 G a1
+       20 |       15 | Dijkstra   | 0.005950 | 9        | D a2 G a3 a3 a3 a1 G a1
+       20 |       15 | Bellman    | 0.395444 | 9        | D a2 G a3 a3 a3 a1 G a1
+       20 |       16 | BFS        | 0.031296 | 10       | D a2 a3 D a2 a3 a3 D a1 a3
+       20 |       16 | Dijkstra   | 0.033831 | 10       | D a2 a3 D a3 a3 a2 D a3 a1
+       20 |       16 | Bellman    | 0.370183 | 10       | D a2 a3 D a3 a3 a2 D a3 a1
+       20 |       17 | BFS        | 0.000944 | 3        | D a1 a3
+       20 |       17 | Dijkstra   | 0.000784 | 3        | D a3 a1
+       20 |       17 | Bellman    | 0.362702 | 3        | D a3 a1
+       20 |       18 | BFS        | 0.003246 | 4        | a1 a3 G a1
+       20 |       18 | Dijkstra   | 0.004078 | 4        | a1 a3 G a1
+       20 |       18 | Bellman    | 0.306947 | 4        | a1 a3 G a1
+       20 |       19 | BFS        | 0.019589 | 9        | a2 a3 G a1 a3 a3 a3 D a2
+       20 |       19 | Dijkstra   | 0.020597 | 9        | a2 a3 G a3 a3 a3 a1 D a2
+       20 |       19 | Bellman    | 0.395989 | 9        | a2 a3 G a3 a3 a3 a1 D a2
+       20 |       20 | BFS        | 0.018989 | 7        | D a1 D a2 a3 a3 a3
+       20 |       20 | Dijkstra   | 0.018621 | 7        | D a1 D a3 a3 a3 a2
+       20 |       20 | Bellman    | 0.410550 | 7        | D a1 D a3 a3 a3 a2
+       30 |       21 | BFS        | 0.028804 | 16       | G a2 G a3 a3 G a1 a3 a3 D a3 a3 a3 a3 G a2
+       30 |       21 | Dijkstra   | 0.031050 | 16       | G a2 G a3 a3 a3 G a3 a3 a1 D a3 a3 a3 G a2
+       30 |       21 | Bellman    | 0.347469 | 16       | G a2 G a3 a3 a3 G a3 a3 a1 D a3 a3 a3 G a2
+       30 |       22 | BFS        | 0.028009 | 9        | a2 a3 a3 D a2 a3 a3 a3 a3
+       30 |       22 | Dijkstra   | 0.031612 | 9        | a2 a3 a3 D a3 a3 a3 a3 a2
+       30 |       22 | Bellman    | 0.413073 | 9        | a2 a3 a3 D a3 a3 a3 a3 a2
+       30 |       23 | BFS        | 0.018821 | 10       | G G a1 D a3 a3 a3 a3 G a3
+       30 |       23 | Dijkstra   | 0.024775 | 10       | a2 G a3 a3 a3 G a3 a3 D a3
+       30 |       23 | Bellman    | 0.302095 | 10       | a2 G a3 a3 a3 G a3 a3 D a3
+       30 |       24 | BFS        | 0.015208 | 9        | G G a3 G a1 a3 a3 D a3
+       30 |       24 | Dijkstra   | 0.016462 | 9        | D D a3 G a3 a3 a1 D a3
+       30 |       24 | Bellman    | 0.423598 | 9        | D D a3 G a3 a3 a1 D a3
+       30 |       25 | BFS        | 0.004616 | 5        | D a3 D a2 a3
+       30 |       25 | Dijkstra   | 0.004923 | 5        | D a3 D a2 a3
+       30 |       25 | Bellman    | 0.313415 | 5        | D a3 D a2 a3
+       30 |       26 | BFS        | 0.041589 | 16       | G a3 D a2 a3 G a2 a3 D a2 G a3 a3 a3 D a3
+       30 |       26 | Dijkstra   | 0.049154 | 16       | G a3 D a2 a3 G a2 a3 D a2 G a3 a3 a3 D a3
+       30 |       26 | Bellman    | 0.316932 | 16       | G a3 D a2 a3 G a2 a3 D a2 G a3 a3 a3 D a3
+       30 |       27 | BFS        | 0.006741 | 7        | D a1 D a2 a3 D a3
+       30 |       27 | Dijkstra   | 0.007323 | 7        | D a1 D a3 a2 D a3
+       30 |       27 | Bellman    | 0.416385 | 7        | D a1 D a3 a2 D a3
+       30 |       28 | BFS        | 0.017737 | 12       | G a1 a3 D a1 a3 D a1 G a2 D a3
+       30 |       28 | Dijkstra   | 0.017582 | 12       | G a1 a3 D a1 a3 D a2 G a2 D a2
+       30 |       28 | Bellman    | 0.224326 | 12       | G a1 a3 D a1 a3 D a2 G a2 D a2
+       30 |       29 | BFS        | 0.027400 | 13       | a3 G a1 a3 G a1 D a2 G a1 D a3 a3
+       30 |       29 | Dijkstra   | 0.028202 | 13       | a3 G a1 a3 G a1 D a2 G a1 D a3 a3
+       30 |       29 | Bellman    | 0.327087 | 13       | a3 G a1 a3 G a1 D a2 G a1 D a3 a3
+       30 |       30 | BFS        | 0.010139 | 6        | a3 G a3 a3 G a3
+       30 |       30 | Dijkstra   | 0.011594 | 6        | a3 G a3 a3 G a3
+       30 |       30 | Bellman    | 0.295933 | 6        | a3 G a3 a3 G a3
+       40 |       31 | BFS        | 0.031868 | -1       | Aucun chemin
+       40 |       31 | Dijkstra   | 0.036132 | -1       | Aucun chemin
+       40 |       31 | Bellman    | 0.303944 | -1       | Aucun chemin
+       40 |       32 | BFS        | 0.031775 | 20       | G G a2 G a2 a3 a3 D a2 a3 G a3 a3 D a2 G a2 D a2 a3
+       40 |       32 | Dijkstra   | 0.035229 | 20       | D D a2 G a2 a3 a3 D a2 a3 G a3 a3 D a2 G a2 D a2 a3
+       40 |       32 | Bellman    | 0.241627 | 20       | D a2 a3 D a2 G a3 D a2 a3 G a3 a3 D a2 G a2 D a2 a3
+       40 |       33 | BFS        | 0.022082 | 13       | G G a2 D a3 a3 G a1 a3 D a3 G a2
+       40 |       33 | Dijkstra   | 0.027307 | 13       | a3 G a3 a2 G a3 a3 a3 D a3 a1 G a2
+       40 |       33 | Bellman    | 0.453248 | 13       | D D a2 D a3 a3 G a3 a1 D a3 G a2
+       40 |       34 | BFS        | 0.000379 | 2        | D a1
+       40 |       34 | Dijkstra   | 0.000380 | 2        | D a1
+       40 |       34 | Bellman    | 0.377058 | 2        | D a1
+       40 |       35 | BFS        | 0.002086 | 4        | a2 G a3 a3
+       40 |       35 | Dijkstra   | 0.001388 | 4        | a2 G a3 a3
+       40 |       35 | Bellman    | 0.301165 | 4        | a2 G a3 a3
+       40 |       36 | BFS        | 0.015072 | 18       | G G a2 D a3 G a3 G a1 D a3 D a2 a3 a3 a3 D a3
+       40 |       36 | Dijkstra   | 0.017484 | 18       | a2 G a3 G a1 a3 a3 G a1 D a3 D a3 a3 a3 a2 D a3
+       40 |       36 | Bellman    | 0.333928 | 18       | D D a2 D a3 G a3 G a1 D a3 D a3 a3 a3 a2 D a3
+       40 |       37 | BFS        | 0.024250 | 20       | D a1 a3 a3 D a2 a3 a3 a3 D a2 G a3 a3 D a1 a3 a3 G a3
+       40 |       37 | Dijkstra   | 0.030967 | 20       | D a3 a3 a1 D a3 a3 a3 D a1 a3 a3 a3 G a2 a3 a3 a3 G a1
+       40 |       37 | Bellman    | 0.212372 | 20       | D a3 a3 a1 D a3 a3 a3 D a1 a3 a3 a3 G a2 a3 a3 a3 G a1
+       40 |       38 | BFS        | 0.014741 | 10       | a1 D a1 a3 G a2 a3 D a3 a3
+       40 |       38 | Dijkstra   | 0.021399 | 10       | a1 D a3 G a2 a3 D a1 a3 a3
+       40 |       38 | Bellman    | 0.236906 | 10       | a1 D a3 G a2 a3 D a1 a3 a3
+       40 |       39 | BFS        | 0.021795 | 12       | G a1 a3 D a3 a3 D a2 a3 a3 G a3
+       40 |       39 | Dijkstra   | 0.027960 | 12       | G a3 a2 D a3 a3 D a3 a3 a3 G a3
+       40 |       39 | Bellman    | 0.215497 | 12       | G a3 a2 D a3 a3 D a3 a3 a3 G a3
+       40 |       40 | BFS        | 0.006473 | 8        | D a1 G a2 a3 D a2 a3
+       40 |       40 | Dijkstra   | 0.009016 | 8        | D a1 G a2 a3 D a2 a3
+       40 |       40 | Bellman    | 0.249484 | 8        | a2 D a1 G a3 D a2 a3
+       50 |       41 | BFS        | 0.001099 | 4        | G a1 G a2
+       50 |       41 | Dijkstra   | 0.001223 | 4        | G a1 G a2
+       50 |       41 | Bellman    | 0.174117 | 4        | G a1 G a2
+       50 |       42 | BFS        | 0.021790 | 18       | a1 G a3 a3 a3 D a2 a3 G a1 D a2 G a2 a3 a3 G a2
+       50 |       42 | Dijkstra   | 0.025425 | 18       | a1 G a3 a3 a3 D a2 a3 G a1 D a2 G a3 a3 a2 G a2
+       50 |       42 | Bellman    | 0.230404 | 18       | a1 G a3 a3 a3 D a2 a3 G a1 D a2 G a3 a3 a2 G a2
+       50 |       43 | BFS        | 0.002127 | 6        | G G a3 D a1 a3
+       50 |       43 | Dijkstra   | 0.002487 | 6        | D D a3 D a1 a3
+       50 |       43 | Bellman    | 0.302597 | 6        | D D a3 D a1 a3
+       50 |       44 | BFS        | 0.004120 | 11       | G G a3 G a1 a3 a3 a3 D a3 a3
+       50 |       44 | Dijkstra   | 0.008772 | 11       | D a3 D a3 G a3 a3 a1 D a3 a3
+       50 |       44 | Bellman    | 0.126528 | 11       | D D a3 G a3 a3 a3 a1 D a3 a3
+       50 |       45 | BFS        | 0.017746 | 13       | D a2 D a3 G a3 D a3 a3 D a2 G a3
+       50 |       45 | Dijkstra   | 0.016365 | 13       | D a2 D a3 G a3 D a3 a3 D a2 G a3
+       50 |       45 | Bellman    | 0.141365 | 13       | D a2 D a3 G a3 D a3 a3 D a2 G a3
+       50 |       46 | BFS        | 0.000537 | 5        | G G a1 D a1
+       50 |       46 | Dijkstra   | 0.001745 | 5        | G G a1 D a1
+       50 |       46 | Bellman    | 0.267955 | 5        | D D a1 D a1
+       50 |       47 | BFS        | 0.006869 | 6        | G a2 a3 a3 G a1
+       50 |       47 | Dijkstra   | 0.005688 | 6        | G a3 a3 a2 G a1
+       50 |       47 | Bellman    | 0.384752 | 6        | G a3 a3 a2 G a1
+       50 |       48 | BFS        | 0.000398 | 2        | G a3
+       50 |       48 | Dijkstra   | 0.000224 | 2        | G a3
+       50 |       48 | Bellman    | 0.193068 | 2        | G a3
+       50 |       49 | BFS        | 0.002623 | 13       | G G a2 a3 D a1 a3 a3 D a3 a3 G a2
+       50 |       49 | Dijkstra   | 0.004981 | 13       | D D a2 a3 D a3 a3 a2 D a3 a3 G a1
+       50 |       49 | Bellman    | 0.294880 | 13       | D D a2 a3 D a3 a3 a2 D a3 a3 G a1
+       50 |       50 | BFS        | 0.000889 | 3        | a3 D a3
+       50 |       50 | Dijkstra   | 0.000572 | 3        | a3 D a3
+       50 |       50 | Bellman    | 0.160373 | 3        | a3 D a3
